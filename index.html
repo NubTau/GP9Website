@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+<cocoon:plugin name="cordova-plugin-camera"/>
+<cocoon:plugin name="cordova-plugin-media-capture"/>
+<cocoon:plugin name="cordova-plugin-media"/>
+<cocoon:plugin name="cordova-plugin-file"/>
+<cocoon:plugin name="cordova-plugin-device"/>
+
   <head>
-    <title>Multiple object detection using pre trained model in TensorFlow.js</title>
+    <title>Driver Assistance System</title>
     <meta charset="utf-8">
     <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <link rel="stylesheet" href="style.css">
+
   </head>  
   <body>
-    <h1>Multiple object detection using pre trained model in TensorFlow.js</h1>
+    <ul>
+      <li><a href="http://localhost:3000/">Home</a></li>
+      <li><a href="http://localhost:3000/about">About</a></li>
+    </ul>
+    
+    <h1>Driver Assistance System</h1>
 
     <p>Wait for the model to load before clicking the button to enable the webcam - at which point it will become visible to use.</p>
     
@@ -26,9 +39,14 @@
    </form>
   
    <form>
-    <input type = "button" onclick = "id" value = "Get Location"/>
+    <input type = "button" onclick = "test;" value = "Get Location"/>
  </form>
 
+ <form action="/" method="post" >
+   <div>
+     <input type="text" name="district">
+   </div>
+ </form>
 
     <!-- Import TensorFlow.js library -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js" type="text/javascript"></script>
@@ -36,8 +54,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
     
     <!-- Import the page's JavaScript to do some stuff -->
-    <script src="script.js" defer>
+    <script src="script.js" defer></script>
 
-    </script>
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
   </body>
 </html>
