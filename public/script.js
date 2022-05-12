@@ -41,19 +41,32 @@ function enableCam(event) {
   }
 
 // Store the resulting model in the global scope of our app.
-var model = undefined;
-//const model = await tf.loadLayersModel('localstorage://model');
+
+async function loadmodel() {
+  console.log( "Loading model..." );
+	model = await tf.loadGraphModel('model.json');
+	console.log( "Model loaded." );
+  console.log(model)
+  demosSection.classList.remove('invisible');
+
+};
+
+loadmodel();
+
+
+// var model = undefined;
 
 // Before we can use COCO-SSD class we must wait for it to finish
 // loading. Machine Learning models can be large and take a moment 
 // to get everything needed to run.
 // Note: cocoSsd is an external object loaded from our index.html
 // script tag import so ignore any warning in Glitch.
-cocoSsd.load().then(function (loadedModel) {
-  model = loadedModel;
-  // Show demo section now model is ready to use.
-  demosSection.classList.remove('invisible');
-});
+
+// cocoSsd.load().then(function (loadedModel) {
+//   model = loadedModel;
+//   // Show demo section now model is ready to use.
+//   demosSection.classList.remove('invisible');
+// });
 
 var children = [];
 
@@ -98,7 +111,7 @@ function predictWebcam() {
   });
 }
 
-// GPS test:
+// The following are GPS function test:
 
 function showLocation(position) {
   var latitude = position.coords.latitude;
