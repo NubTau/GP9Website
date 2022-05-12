@@ -42,6 +42,7 @@ function enableCam(event) {
 
 // Store the resulting model in the global scope of our app.
 var model = undefined;
+//const model = await tf.loadLayersModel('localstorage://model');
 
 // Before we can use COCO-SSD class we must wait for it to finish
 // loading. Machine Learning models can be large and take a moment 

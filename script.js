@@ -48,11 +48,21 @@ var model = undefined;
 // to get everything needed to run.
 // Note: cocoSsd is an external object loaded from our index.html
 // script tag import so ignore any warning in Glitch.
-cocoSsd.load().then(function (loadedModel) {
+
+
+// cocoSsd.load().then(function (loadedModel) {
+//   model = loadedModel;
+//   // Show demo section now model is ready to use.
+//   demosSection.classList.remove('invisible');
+// });
+
+model.load().then(function (loadedModel) {
   model = loadedModel;
   // Show demo section now model is ready to use.
   demosSection.classList.remove('invisible');
 });
+
+
 
 var children = [];
 
@@ -125,7 +135,7 @@ function getLocation() {
   }
 }
 
-// test another
+//  GPS test 2
 var x = document.getElementById("demo");
 
 function test_getlocation() {
