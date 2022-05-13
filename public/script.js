@@ -41,20 +41,25 @@ function enableCam(event) {
   }
 
 // Store the resulting model in the global scope of our app.
+// ********
+var model = undefined;
 
-async function loadmodel() {
-  console.log( "Loading model..." );
-	model = await tf.loadGraphModel('model.json');
-	console.log( "Model loaded." );
-  console.log(model)
-  demosSection.classList.remove('invisible');
+ async function loadmodel() {
+   console.log( "Loading model..." );
+ 	const model = await tf.loadGraphModel('model.json');
+ 	console.log( "Model loaded." );
+   console.log(model)
+   demosSection.classList.remove('invisible');
+   const zeros = tf.zeros([1, 224, 224, 3]);
+   console.log(model.predict(zeros).print())
+ };
 
-};
-
-loadmodel();
+ model = loadmodel();
 
 
-// var model = undefined;
+// ***********************
+
+ //var model = undefined;
 
 // Before we can use COCO-SSD class we must wait for it to finish
 // loading. Machine Learning models can be large and take a moment 
@@ -62,16 +67,17 @@ loadmodel();
 // Note: cocoSsd is an external object loaded from our index.html
 // script tag import so ignore any warning in Glitch.
 
-// cocoSsd.load().then(function (loadedModel) {
-//   model = loadedModel;
-//   // Show demo section now model is ready to use.
-//   demosSection.classList.remove('invisible');
-// });
+//  cocoSsd.load().then(function (loadedModel) {
+  // model = loadedModel;
+// Show demo section now model is ready to use.
+  //  demosSection.classList.remove('invisible');
+//  });
 
 var children = [];
 
 function predictWebcam() {
   // Now let's start classifying a frame in the stream.
+  //model.detect(video) or predict ?
   model.detect(video).then(function (predictions) {
     // Remove any highlighting we did previous frame.
     for (let i = 0; i < children.length; i++) {
@@ -191,24 +197,25 @@ id = navigator.geolocation.watchPosition(success, error, options);
 
 alert(id);
 
-// var options = {
-//   enableHighAccuracy: true,
-//   timeout: 5000,
-//   maximumAge: 0
-// };
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
 
-// function success(pos) {
-//   var crd = pos.coords;
+function success(pos) {
+  var crd = pos.coords;
 
-//   console.log('Your current position is:');
-//   console.log(`Latitude : ${crd.latitude}`);
-//   console.log(`Longitude: ${crd.longitude}`);
-//   console.log(`More or less ${crd.accuracy} meters.`);
-//   alert("Lat is :" + crd.latitude + "Long is :" + crd.longitude + "Acc is:" + crd.accuracy)
-// }
+  console.log('Your current position is:');
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+  alert("Lat is :" + crd.latitude + "Long is :" + crd.longitude + "Acc is:" + crd.accuracy)
+}
 
-// function error(err) {
-//   console.warn(`ERROR(${err.code}): ${err.message}`);
-// }
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
 
-// test = navigator.geolocation.getCurrentPosition(success, error, options);
+test = navigator.geolocation.getCurrentPosition(success, error, options);
+
