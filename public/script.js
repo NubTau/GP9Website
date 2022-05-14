@@ -50,8 +50,6 @@ var model = undefined;
  	console.log( "Model loaded." );
    console.log(model)
    demosSection.classList.remove('invisible');
-   const zeros = tf.zeros([1, 224, 224, 3]);
-   console.log(model.predict(zeros).print())
  };
 
  model = loadmodel();
@@ -195,7 +193,7 @@ options = {
 
 id = navigator.geolocation.watchPosition(success, error, options);
 
-alert(id);
+// alert(id);
 
 var options = {
   enableHighAccuracy: true,
@@ -218,4 +216,3 @@ function error(err) {
 }
 
 test = navigator.geolocation.getCurrentPosition(success, error, options);
-

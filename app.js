@@ -6,6 +6,38 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser")
 const ejs = require("ejs")
 const { networkInterfaces } = require('os')
+//import alert from "alert"
+//const alert = require("alert")
+//alert("test")
+
+// const tf = require('@tensorflow/tfjs');
+//  const tfn = require('@tensorflow/tfjs-node');
+//  const handler = tfn.io.fileSystem("model.json");
+
+// async function loadmodel() {
+//   console.log( "Loading model..." );
+//   const model = await tf.loadLayersModel(handler);
+//   console.log( "Model loaded." );
+//   console.log(model)
+//   demosSection.classList.remove('invisible');
+//   const zeros = tf.zeros([1, 224, 224, 3]);
+//   console.log(model.predict(zeros).print())
+
+// };
+
+// loadmodel();
+
+// const tf = require('@tensorflow/tfjs');
+// const tfnode = require('@tensorflow/tfjs-node');
+
+// async function loadModel(){
+//     const handler = tfnode.io.fileSystem('model.json');
+//     const model = await tf.loadLayersModel(handler);
+//     console.log("Model loaded")
+// }
+
+// loadModel();
+
 
 // Let nodejs read the files under public folder 
 app.use(express.static(path.join(__dirname, "public")));
@@ -17,7 +49,8 @@ app.use((req,res,next)=>{
 })
 
 app.get("/",(req,res)=>{
-    res.sendFile("./index.html",{root:__dirname})
+    //res.sendFile("./index.html",{root:__dirname})
+    res.render("index",{test:"test"})
 })
 
 app.get("/about",(req,res)=>{
@@ -41,15 +74,28 @@ const schema = {
 
 const Note = mongoose.model("District", schema);
 
-// app.set("view engine","ejs")
-
+app.set("view engine","ejs")
+app.set("views","page")
 // Declare a post method that can save the user's input to the mongodb database.
 app.post("/", function(req,res) {
     let newNode = new Note({
         district: req.body.district
     });
     newNode.save();
-    res.redirect("/");   
+    if (newNode = "Kowloon") {
+        //window.alert("The driver is in a dangerous district! Please pay deep attention to the driver.")
+        //alert("Dangerous")
+        //res.send("Dangerous")
+      }
+    res.redirect("/");
+    fetch(newNode,{
+        method:"DELETE"
+      })
+   
 })
+
+app.get("/"),(req,res)=>{
+    let ejsnode = newNode;
+}
 
 app.listen(process.env.PORT || 3000)
